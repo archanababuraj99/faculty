@@ -9,31 +9,54 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Rajagiri</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Faculty</a>
+          <a class="nav-link active" aria-current="page" href="/">Add Faculty</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/student">Student</a>
+          <a class="nav-link" href="/student">Add Student</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/busadd">Bus</a>
+          <a class="nav-link" href="/busadd">Add Buss</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/book">Book</a>
+          <a class="nav-link" href="/book">Add Book</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/viewallfaculty">View All Faculty</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/viewallstudent">View All Student</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/viewallbus">View All bus</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/studentsearch">Search Student</a>
+        </li>
+       
+
+        
       
       </ul>
+      <form method="post" action="/facultysearch" class="d-flex">
+      {{ csrf_field() }}
+        <input name="fname" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
     </div>
   </div>
 </nav>
+
+
 @yield("content")
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>

@@ -14,7 +14,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $student=StudentModel::all();
+        return view('viewallstudent',compact('student'));
     }
 
     /**
@@ -33,6 +34,22 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     public function search(Request $request)
+     {
+         $getRoll=request('srollno');
+
+         $student=StudentModel::query()
+         ->where('srollno','LIKE',"%{$getRoll}%")
+         ->get();
+         
+         return view('viewallstudent',compact('student'));
+
+
+
+
+     }
+
     public function store(Request $request)
     {
         $getName=request('sname');

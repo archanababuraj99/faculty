@@ -15,7 +15,8 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        //
+        $faculty=FacultyModel::all();
+        return view('viewallfaculty',compact('faculty'));
     }
 
     /**
@@ -34,7 +35,26 @@ class FacultyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+     public function search(Request $request)
+     {
+         $getFname=request('fname');
+
+         $faculty=FacultyModel::query()
+         ->where('fname','LIKE',"%{$getFname}%")
+         ->get();
+
+         return view('viewallfaculty',compact('faculty'));
+
+     }
+
+
+
+
+
+
+
+     public function store(Request $request)
     {
         $getName=request('fname');
         $getDes=request('fdes');
@@ -53,6 +73,8 @@ class FacultyController extends Controller
         $faculty->fcollege=$getCollege;
 
     $faculty->save();
+
+    return redirect('/viewallfaculty');
     }
 
     /**
@@ -74,7 +96,8 @@ class FacultyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $faculty=FacultyModel::find($id);
+        return view('editfaculty',compact('faculty'));
     }
 
     /**
@@ -86,7 +109,24 @@ class FacultyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $faculty=FacultyModel::find($id);
+
+        $getName=request('fname');
+        $getDes=request('fdes');
+        $getContact=request('fcontact');
+        $getCollege=request('fcollege');
+
+        
+
+ 
+        $faculty->fname=$getName;
+        $faculty->fdesig=$getDes;
+        $faculty->fmob=$getContact;
+        $faculty->fcollege=$getCollege;
+
+    $faculty->save();
+    return redirect('/viewallfaculty');
+
     }
 
     /**
